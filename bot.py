@@ -11,6 +11,23 @@ from PIL import Image, ImageDraw, ImageFont
 import logging
 import asyncio
 
+from threading import Thread
+from flask import Flask
+import os
+
+# Фейковый веб-сервер для Render
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web():
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+
+# Запускаем веб-сервер в фоне
+Thread(target=run_web).start()
+
 logging.basicConfig(level=logging.INFO)
 
 # ========== ТВОИ ДАННЫЕ (ВСТАВЬ СЮДА) ==========
