@@ -19,11 +19,13 @@ import os
 app = Flask(__name__)
 
 @app.route('/')
+@app.route('/health')
 def home():
     return "Bot is running!"
 
 def run_web():
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
 
 # Запускаем веб-сервер в фоне
 Thread(target=run_web).start()
