@@ -1,4 +1,3 @@
-cd ~/Desktop/concert_bot
 git add requirements.txt
 git commit -m "add dotenv"
 git push origin main
